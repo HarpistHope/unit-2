@@ -1,4 +1,4 @@
-// 02/19/2026: Begin Activity 6
+// 02/19/2026: Begin Activity 6 Part One
 // GOAL: Proportional symbols representing attribute values of mapped features
 //STEPS:
 //Step 1. Create the Leaflet map--already done in createMap()
@@ -8,15 +8,24 @@
 //Step 5. For each feature, determine its value for the selected attribute
 //Step 6. Give each feature's circle marker a radius based on its attribute value
 
-// Top 15 prefectures: Tokyo, Kyoto, Osaka, Kanagawa, Chiba, Okinawa, Hokkaido, Hiroshima, Ishikawa, Fukuoka, Aichi, Shizuoka, Hyogo, Nagano, Yamanashi
-// Lowest 15 prefectures (from lowest to largest): Tottori, Fukui, Shimane, Miyazaki, Kochi, Akita, Fukushima, Saga, Yamagata, Toyama, tokushima, Mie, Iwate, Ehime, Yamaguchi
-// To-do: Geocode both csv files for future potential use
+// 02/21/2026: Begin Activity 6 Part 2
+//GOAL: Allow the user to sequence through the attributes and resymbolize the map 
+//   according to each attribute
+//STEPS:
+//Step 1. Create slider widget
+//Step 2. Create step buttons
+//Step 3. Create an array of the sequential attributes to keep track of their order
+//Step 4. Assign the current attribute based on the index of the attributes array
+//Step 5. Listen for user input via affordances
+//Step 6. For a forward step through the sequence, increment the attributes array index; 
+//   for a reverse step, decrement the attributes array index
+//Step 7. At either end of the sequence, return to the opposite end of the sequence on the next step
+//   (wrap around)
+//Step 8. Update the slider position based on the new index
+//Step 9. Reassign the current attribute based on the new attributes array index
+//Step 10. Resize proportional symbols according to each feature's value for the new attribute
 
-// Add all scripts to the JS folder
-// console.log("This map shows the number of annual US visitors to each prefecture in Japan from 2015 to 2024. The data is from the Japan National Tourism Organization (JNTO) and was accessed by H. McBride 02/2026 at: https://statistics.jnto.go.jp/en/graph/#graph--lodgers--by--prefecture");
-// console.log("I will likely curb the number of features shown on the map and choose a different tile layer to make it more readable for Lab1; for Activity 5, I have kept all 47 prefectures on the map and went with a pretty watercolor-type tilelayer.");
-
-console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration as was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
+console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and minValue var in global scope so I can access them in all necessary functions
 var map;
@@ -93,6 +102,7 @@ function pointToLayer(feature, latlng, attributes){
     };
 
     //console.log(Object.keys(feature.properties));
+    
     // for each feature, determine its value for the selected attribute
     var attValue = Number(feature.properties[attribute]);
 
@@ -105,14 +115,15 @@ function pointToLayer(feature, latlng, attributes){
     //build popup content string starting with Prefecture...Example 2.1 line 24
     var popupContent = "<p><b>City: </b> " + feature.properties.City + "</p>";
 
+    // Add airport info to the popup content
     popupContent += "<p><b>Airports: </b> " + feature.properties.Airports + "</p>";
 
-    //add formatted attribute to popup content string
+    //add formatted attribute to popup content string, year should return the corresponding number of passengers 
     var year = attribute;
 
     popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + feature.properties[attribute];
    
-    //bind the popup to the circle marker
+    //bind the popup to the circle marker, set the offset appropriately
     layer.bindPopup(popupContent, {
         offset: [0, -6] 
     });
@@ -145,10 +156,13 @@ function updatePropSymbols(attribute){
 
             //add city to popup content string
             var popupContent = "<p><b>City:</b> " + props.City + "</p>";
+           
             // add additional text (airport and enplanement counts)
             popupContent += "<p><b>Airports: </b> " + props.Airports + "</p>";
+            
             // define year variable as attribute
             var year = attribute
+           
             // add enplanement count text per year
             popupContent += "<p><b>Number of Passengers by Enplanements in " 
                 + year + ":</b> " + props[attribute];
@@ -173,7 +187,7 @@ function createSequenceControls(attributes){
     document.querySelector(".range-slider").step = 1;
 
     //below Example 3.6...add step buttons
-    // Noun Project Icon from: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
+    // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
     document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
     document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
     
@@ -240,7 +254,7 @@ function processData(data){
             attributes.push(attribute);
         };
 
-    // NOTE: According to Google, using one of the two scripts below below is safer than using "20" above because if I had any other properties with "20" in the name, those would also be grabbed.
+    // NOTE: According to a quick Google search, using one of the two scripts below below is safer than using "20" above because if I had any other properties with "20" in the name, those would also be grabbed.
     // I will check in lab if I should change to the Google-recommended script or keep the original 'less-clean' script from the textbook
         //     
         //if (!isNaN(attribute)){  // only numeric property names
@@ -249,8 +263,7 @@ function processData(data){
         //OR USE: 
         //if (Number(attribute) >= 2013 && Number(attribute) <= 2023){
             //attributes.push(attribute);
-
-                //check result
+                
 };
     //check result
     console.log(attributes);
@@ -278,18 +291,3 @@ function processData(data){
 // the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
-//GOAL: Allow the user to sequence through the attributes and resymbolize the map 
-//   according to each attribute
-//STEPS:
-//Step 1. Create slider widget
-//Step 2. Create step buttons
-//Step 3. Create an array of the sequential attributes to keep track of their order
-//Step 4. Assign the current attribute based on the index of the attributes array
-//Step 5. Listen for user input via affordances
-//Step 6. For a forward step through the sequence, increment the attributes array index; 
-//   for a reverse step, decrement the attributes array index
-//Step 7. At either end of the sequence, return to the opposite end of the sequence on the next step
-//   (wrap around)
-//Step 8. Update the slider position based on the new index
-//Step 9. Reassign the current attribute based on the new attributes array index
-//Step 10. Resize proportional symbols according to each feature's value for the new attribute

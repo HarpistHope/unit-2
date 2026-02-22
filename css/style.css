@@ -6,8 +6,8 @@
     }
 
 .leaflet-popup-content {
-    background: crimson; /* Dark background */
-    color: #fff;      /* White text */
+    background: crimson; 
+    color: #fff;    
     border-radius: 1px;
     font-size: 14px;
     line-height: 28px;
