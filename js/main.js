@@ -47,8 +47,36 @@ function createMap(){
         ext: 'jpg'
     });
 
+
     //add the Stadia_StamenWatercolor tilelayer to the map
-    Stadia_StamenWatercolor.addTo(map);
+    //Stadia_StamenWatercolor.addTo(map);
+
+    // testing NASA Earth at Night tilelayer
+    var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+        attribution: 'Federal Aviation Administration (FAA) | Noun Project | Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ. | ',
+        bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+        minZoom: 1,
+        maxZoom: 8,
+        format: 'jpg',
+        time: '',
+        tilematrixset: 'GoogleMapsCompatible_Level'
+    });
+
+    // Add to map
+    NASAGIBS_ViirsEarthAtNight2012.addTo(map);
+
+    // Testing CartoDB_VoyagerNoLabels tilelayer
+    var CartoDB_VoyagerNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+        
+    });
+    
+    // add to map, then adjust opacity to see NASA basemap underneath
+    CartoDB_VoyagerNoLabels.addTo(map)
+
+    CartoDB_VoyagerNoLabels.setOpacity(0.1);
 
     //call getData function
     getData();
@@ -94,12 +122,13 @@ function pointToLayer(feature, latlng, attributes){
     //create marker options
     var options = {
         radius: 8,
-        fillColor: "CRIMSON",
+        fillColor: "gold",
         color: "#000",
         weight: 1,
         opacity: 1,
-        fillOpacity: 0.65
-    };
+        fillOpacity: 0.9
+    }
+
 
     //console.log(Object.keys(feature.properties));
     
@@ -275,7 +304,7 @@ function processData(data){
 // Import GeoJSON data
     function getData(map){
         //load the data
-        fetch("data/top20EnplanementCities.geojson")
+        fetch("data/topEnplanementCities.geojson")
             .then(function(response){
                 return response.json();
             })

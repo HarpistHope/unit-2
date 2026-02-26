@@ -6,20 +6,23 @@
     }
 
 .leaflet-popup-content {
-    background: crimson; 
-    color: #fff;    
+    background: gold; 
+    color: black;    
     border-radius: 1px;
     font-size: 14px;
     line-height: 28px;
+    opacity: 1
 }
 
 .leaflet-popup-content-wrapper{
-    background: crimson;
+    background: gold;
     border-radius: 5px;
+    opacity: 1
 }
 
 .leaflet-popup-tip{
-    background: crimson;
+    background: gold;
+    opacity: 0.9
 }
 
 #panel {  
