@@ -130,14 +130,26 @@ function pointToLayer(feature, latlng, attributes){
     console.log(attribute);
 
     //create marker options
-    var options = {
-        radius: 8,
-        fillColor: "#69e2ff",
-        color: "#000",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.9
-    }
+    // var options = {
+    //     radius: 8,
+    //     fillColor: "#69e2ff",
+    //     color: "#000",
+    //     weight: 1,
+    //     opacity: 1,
+    //     fillOpacity: 0.8
+    // }
+
+    // practicing uisng an icon as the marker options
+    var options = L.icon({
+        iconURL: 'img/propeller_plane.svg',
+        
+        iconSize:     [38, 95], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+
+    });
 
     console.log(Object.keys(feature.properties));
     
