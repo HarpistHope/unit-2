@@ -1,4 +1,5 @@
 // GEOG 579 - Spring 2026 - Lab 1 - Hope McBride
+// Favicon by Sumana Chamrunworakiat at the Noun Project https://thenounproject.com/icon/airport-545125/
 console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and minValue var in global scope so I can access them in all necessary functions
