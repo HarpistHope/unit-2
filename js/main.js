@@ -131,6 +131,23 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
+// Example 1.2: A consolidated popup-content-creation function in main.js
+function createPopupContent(properties, attribute){
+
+    //build popup content string starting with Prefecture...Example 2.1 line 24
+    var popupContent = "<p><b>City: </b> " + feature.properties.City + "</p>";
+
+    // Add airport info to the popup content
+    popupContent += "<p><b>Airports: </b> " + feature.properties.Airports + "</p>";
+
+    //add formatted attribute to popup content string, year should return the corresponding number of passengers 
+    var year = attribute;
+
+    popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + feature.properties[attribute];
+   
+    return popupContent;
+};
+
 //Example 2.1 line 1...function to convert markers to circle markers
 function pointToLayer(feature, latlng, attributes){
     //Step 4: Assign the current attribute based on the first index of the attributes array
@@ -160,22 +177,14 @@ function pointToLayer(feature, latlng, attributes){
     //create circle marker layer
     var layer = L.circleMarker(latlng, options);
 
-    //build popup content string starting with Prefecture...Example 2.1 line 24
-    var popupContent = "<p><b>City: </b> " + feature.properties.City + "</p>";
+    //Example 1.1 line 2...in pointToLayer()
+    var popupContent = createPopupContent(feature.properties, attribute);
+    
+    //bind the popup to the circle marker    
+    layer.bindPopup(popupContent, {  offset: new L.Point(0,-options.radius)    
 
-    // Add airport info to the popup content
-    popupContent += "<p><b>Airports: </b> " + feature.properties.Airports + "</p>";
-
-    //add formatted attribute to popup content string, year should return the corresponding number of passengers 
-    var year = attribute;
-
-    popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + feature.properties[attribute];
-   
-    //bind the popup to the circle marker, set the offset appropriately
-    layer.bindPopup(popupContent, {
-        offset: [0, -6] 
     });
-
+    
     //return the circle marker to the L.geoJson pointToLayer option
     return layer;
 };
@@ -191,7 +200,7 @@ function createPropSymbols(data, attributes){
 
     var firstPopup = L.popup(firstPopup)
         .setLatLng([39.0119, -98.4842])
-        .setContent("Select a proportional symbol to see a particular city's data.")
+        .setContent("Click on a proportional symbol to see data.")
         .openOn(map);
 };
 
@@ -207,22 +216,25 @@ function updatePropSymbols(attribute){
             var radius = calcPropRadius(props[attribute]);
             layer.setRadius(radius);
 
-            //add city to popup content string
-            var popupContent = "<p><b>City:</b> " + props.City + "</p>";
+            // //add city to popup content string
+            // var popupContent = "<p><b>City:</b> " + props.City + "</p>";
            
-            // add additional text (airport and enplanement counts)
-            popupContent += "<p><b>Airports: </b> " + props.Airports + "</p>";
+            // // add additional text (airport and enplanement counts)
+            // popupContent += "<p><b>Airports: </b> " + props.Airports + "</p>";
             
-            // define year variable as attribute
-            var year = attribute
+            // // define year variable as attribute
+            // var year = attribute
            
-            // add enplanement count text per year
-            popupContent += "<p><b>Number of Passengers by Enplanements in " 
-                + year + ":</b> " + props[attribute];
+            // // add enplanement count text per year
+            // popupContent += "<p><b>Number of Passengers by Enplanements in " 
+            //     + year + ":</b> " + props[attribute];
             
-            //update popup content            
-            popup = layer.getPopup();            
+             //Example 1.1 line 18...in updatePropSymbols()
+            var popupContent = createPopupContent(props, attribute);    
+            //update popup with new content    
+            popup = layer.getPopup();    
             popup.setContent(popupContent).update();
+
         };
     });
 };
