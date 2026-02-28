@@ -190,6 +190,11 @@ function createPropSymbols(data, attributes){
             return pointToLayer(feature, latlng, attributes);
         }
     }).addTo(map);
+
+    var firstPopup = L.popup(firstPopup)
+        .setLatLng([39.0119, -98.4842])
+        .setContent("Select a proportional symbol to see a particular city's data.")
+        .openOn(map);
 };
 
 //Step 10: Resize proportional symbols according to new attribute values
@@ -321,10 +326,7 @@ function processData(data){
     return attributes;
 };
 
-var firstPopup = L.popup()
-    .setLatLng([39.0119, -98.4842])
-    .setContent("Select a proportional symbol to see a particular city's data.")
-    .openOn(map);
+
 
 // Import GeoJSON data
     function getData(map){
