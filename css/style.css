@@ -8,8 +8,6 @@
 .leaflet-popup-content {
     background: #69E2FF; 
     color: white;  
-    -webkit-text-stroke-width: 1px;  
-    -webkit-text-stroke-color: #303234;
     border-radius: 1px;
     font-size: 14px;
     line-height: 28px;
