@@ -106,21 +106,26 @@ function calcPropRadius(attValue) {
     return radius;
 };
 
-// Example 1.2: A consolidated popup-content-creation function in main.js
-function createPopupContent(properties, attribute){
+// // Example 1.2: A consolidated popup-content-creation function in main.js
+// function createPopupContent(properties, attribute){
+//     //build popup content string starting with Prefecture...Example 2.1 line 24
+//     var popupContent = "<p><b>City: </b> " + properties.City + "</p>";
+//     // Add airport info to the popup content
+//     popupContent += "<p><b>Airports: </b> " + properties.Airports + "</p>";
+//     //add formatted attribute to popup content string, year should return the corresponding number of passengers 
+//     var year = attribute;
+//     popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + properties[attribute];
+//     // return the popupContent
+//     return popupContent;
+// };
 
-    //build popup content string starting with Prefecture...Example 2.1 line 24
-    var popupContent = "<p><b>City: </b> " + properties.City + "</p>";
-
-    // Add airport info to the popup content
-    popupContent += "<p><b>Airports: </b> " + properties.Airports + "</p>";
-
-    //add formatted attribute to popup content string, year should return the corresponding number of passengers 
-    var year = attribute;
-
-    popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + properties[attribute];
-   
-    return popupContent;
+//Example 1.2 line 1...PopupContent constructor function
+function PopupContent(properties, attribute){
+    this.properties = properties;
+    this.attribute = attribute;
+    this.year = attribute;
+    this.passengers = this.properties[attribute];
+    this.formatted = "<p><b>City:</b> " + this.properties.City + "<p><b>Airports:</b> " + this.properties.Airports + "</p><p><b>Total Number of Enplanements in " + this.year + ":</b> " + this.passengers;
 };
 
 //Example 2.1 line 1...function to convert markers to circle markers
@@ -139,8 +144,7 @@ function pointToLayer(feature, latlng, attributes){
         opacity: 1,
         fillOpacity: 0.8
     }
-
-
+    // logging to the console to check
     console.log(Object.keys(feature.properties));
     
     // for each feature, determine its value for the selected attribute
@@ -152,12 +156,13 @@ function pointToLayer(feature, latlng, attributes){
     //create circle marker layer
     var layer = L.circleMarker(latlng, options);
 
-    //Example 1.1 line 2...in pointToLayer()
-    var popupContent = createPopupContent(feature.properties, attribute);
-    
-    //bind the popup to the circle marker    
-    layer.bindPopup(popupContent, {  offset: new L.Point(0,-6)    
+    //Example 1.3 line 1...in pointToLayer()
+    //create new popup content
+    var popupContent = new PopupContent(feature.properties, attribute);
 
+    //bind the popup to the circle marker    
+    layer.bindPopup(popupContent.formatted, { 
+    	offset: new L.Point(0,-6)
     });
     
     //return the circle marker to the L.geoJson pointToLayer option
@@ -205,11 +210,12 @@ function updatePropSymbols(attribute){
             // popupContent += "<p><b>Number of Passengers by Enplanements in " 
             //     + year + ":</b> " + props[attribute];
             
-             //Example 1.1 line 18...in updatePropSymbols()
-            var popupContent = createPopupContent(props, attribute);    
+            //Example 1.3 line 6...in UpdatePropSymbols()
+            var popupContent = new PopupContent(props, attribute);
+
             //update popup with new content    
             popup = layer.getPopup();    
-            popup.setContent(popupContent).update();
+            popup.setContent(popupContent.formatted).update();
 
         };
     });
