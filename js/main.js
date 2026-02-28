@@ -132,7 +132,7 @@ function pointToLayer(feature, latlng, attributes){
     //create marker options
     var options = {
         radius: 8,
-        fillColor: "gold",
+        fillColor: "#69e2ff",
         color: "#000",
         weight: 1,
         opacity: 1,
@@ -174,7 +174,7 @@ function createPropSymbols(data, attributes){
     // Set up the map's entry point: a popup with instructions to click the proportional symbols
     var firstPopup = L.popup(firstPopup)
         .setLatLng([39.0119, -98.4842])
-        .setContent("Click on the proportional symbols to see data.")
+        .setContent("Click on proportional symbols to see data.")
         .openOn(map);
 };
 
