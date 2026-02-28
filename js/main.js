@@ -125,7 +125,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ":<b>" + <b>this.passengers</b> + "</b>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ":<b>" + this.passengers + "</b></p>";
 };
 
 //Example 2.1 line 1...function to convert markers to circle markers
