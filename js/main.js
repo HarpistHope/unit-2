@@ -321,6 +321,10 @@ function processData(data){
     return attributes;
 };
 
+var firstPopup = L.popup()
+    .setLatLng([39.0119, -98.4842])
+    .setContent("Select a proportional symbol to see a particular city's data.")
+    .openOn(map);
 
 // Import GeoJSON data
     function getData(map){
@@ -336,12 +340,9 @@ function processData(data){
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
             })
+
     };
 
 // the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
-var firstPopup = L.popup()
-    .setLatLng([39.0119, -98.4842])
-    .setContent("Select a proportional symbol to see a particular city's data.")
-    .openOn(map);
