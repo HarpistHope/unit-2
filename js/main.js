@@ -79,22 +79,22 @@ function createMap(){
     // CartoDB_VoyagerNoLabels.setOpacity(0.1);
 
 
-    // Use tile layer from leaflet-providers;
-    var Thunderforest_MobileAtlas = L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}{r}.png?apikey={apikey}', {
-	attribution: 'Federal Aviation Administration (FAA) | Noun Project | &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	apikey: '<your apikey>',
-	maxZoom: 22
-});
-
-    Thunderforest_MobileAtlas.addTo(map)
-
-
-//     var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-// 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-// 	maxZoom: 16
+//     // Use tile layer from leaflet-providers;
+//     var Thunderforest_MobileAtlas = L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}{r}.png?apikey={apikey}', {
+// 	attribution: 'Federal Aviation Administration (FAA) | Noun Project | &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+// 	apikey: '<your apikey>',
+// 	maxZoom: 22
 // });
 
-//     Esri_WorldGrayCanvas.addTo(map)
+//     Thunderforest_MobileAtlas.addTo(map)
+
+
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Federal Aviation Administration (FAA) | Noun Project | Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        maxZoom: 16
+    });
+
+    Esri_WorldGrayCanvas.addTo(map)
 
     //call getData function
     getData();
@@ -135,15 +135,15 @@ function calcPropRadius(attValue) {
 function createPopupContent(properties, attribute){
 
     //build popup content string starting with Prefecture...Example 2.1 line 24
-    var popupContent = "<p><b>City: </b> " + feature.properties.City + "</p>";
+    var popupContent = "<p><b>City: </b> " + properties.City + "</p>";
 
     // Add airport info to the popup content
-    popupContent += "<p><b>Airports: </b> " + feature.properties.Airports + "</p>";
+    popupContent += "<p><b>Airports: </b> " + properties.Airports + "</p>";
 
     //add formatted attribute to popup content string, year should return the corresponding number of passengers 
     var year = attribute;
 
-    popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + feature.properties[attribute];
+    popupContent += "<p><b>Number of Passengers by Enplanements in " + year + ":</b> " + properties[attribute];
    
     return popupContent;
 };
