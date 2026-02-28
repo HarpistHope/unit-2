@@ -125,7 +125,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ":<b>" + this.passengers + "</b>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ":<b>" + <b>this.passengers</b> + "</b>";
 };
 
 //Example 2.1 line 1...function to convert markers to circle markers
@@ -222,33 +222,81 @@ function updatePropSymbols(attribute){
     });
 };
 
-//Sequence Slider Step 1: Create new sequence controls
-function createSequenceControls(attributes){
-    //create range input element (slider)
-    var slider = "<input class='range-slider' type='range'></input>";
-    document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
 
-    //set slider attributes
-    document.querySelector(".range-slider").max = 10;
-    document.querySelector(".range-slider").min = 0;
-    document.querySelector(".range-slider").value = 0;
-    document.querySelector(".range-slider").step = 1;
 
-    //below Example 3.6...add step buttons
-    // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
-    document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
-    document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
+
+//Create new sequence controls
+function createSequenceControls(attributes){   
+    var SequenceControl = L.Control.extend({
+        options: {
+            position: 'bottomleft'
+        },
+
+        onAdd: function () {
+            // create the control container div with a particular class name
+            var container = L.DomUtil.create('div', 'sequence-control-container');
+
+            // ... initialize other DOM elements
+            //create range input element (slider)
+            var slider = "<input class='range-slider' type='range'></input>";
+            document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
+
+            //set slider attributes
+            document.querySelector(".range-slider").max = 10;
+            document.querySelector(".range-slider").min = 0;
+            document.querySelector(".range-slider").value = 0;
+            document.querySelector(".range-slider").step = 1;
+
+            //below Example 3.6...add step buttons
+            // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
+            document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
+            document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
+            
+            document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
+            document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
+            
+            //Below Example 3.6 in createSequenceControls()
+            //Step 5: click listener for buttons
+            document.querySelectorAll('.step').forEach(function(step){
+                step.addEventListener("click", function(){
+                    //sequence
+                })
+            })
+
+            return container;
+        }
+    });
+
+    map.addControl(new SequenceControl());    // add listeners after adding control}
+
+
+// //Sequence Slider Step 1: Create new sequence controls
+// function createSequenceControls(attributes){
+//     //create range input element (slider)
+//     var slider = "<input class='range-slider' type='range'></input>";
+//     document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
+
+//     //set slider attributes
+//     document.querySelector(".range-slider").max = 10;
+//     document.querySelector(".range-slider").min = 0;
+//     document.querySelector(".range-slider").value = 0;
+//     document.querySelector(".range-slider").step = 1;
+
+//     //below Example 3.6...add step buttons
+//     // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
+//     document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
+//     document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
     
-    document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
-    document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
+//     document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
+//     document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
     
-     //Below Example 3.6 in createSequenceControls()
-    //Step 5: click listener for buttons
-    document.querySelectorAll('.step').forEach(function(step){
-        step.addEventListener("click", function(){
-            //sequence
-        })
-    })
+//      //Below Example 3.6 in createSequenceControls()
+//     //Step 5: click listener for buttons
+//     document.querySelectorAll('.step').forEach(function(step){
+//         step.addEventListener("click", function(){
+//             //sequence
+//         })
+//     })
 
     //Step 5: input listener for slider
     document.querySelector('.range-slider').addEventListener('input', function(){
