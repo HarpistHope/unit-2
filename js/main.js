@@ -1,5 +1,5 @@
 // GEOG 579 - Spring 2026 - Lab 1 - Hope McBride
-// Favicon by Sumana Chamrunworakiat at the Noun Project https://thenounproject.com/icon/airport-545125/
+// Favicon by MHDK Avatar at the Noun Project https://thenounproject.com/icon/airplane-8160142/
 console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and minValue var in global scope so I can access them in all necessary functions
@@ -130,27 +130,16 @@ function pointToLayer(feature, latlng, attributes){
     //check
     console.log(attribute);
 
-    //create marker options
-    // var options = {
-    //     radius: 8,
-    //     fillColor: "#69e2ff",
-    //     color: "#000",
-    //     weight: 1,
-    //     opacity: 1,
-    //     fillOpacity: 0.8
-    // }
+    // create marker options
+    var options = {
+        radius: 8,
+        fillColor: "#4e9fe5",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    }
 
-    // practicing uisng an icon as the marker options
-    var options = L.icon({
-        iconURL: 'img/propeller_plane.svg',
-        
-        iconSize:     [38, 95], // size of the icon
-        shadowSize:   [50, 64], // size of the shadow
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-
-    });
 
     console.log(Object.keys(feature.properties));
     
