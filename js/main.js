@@ -1,30 +1,4 @@
-// 02/19/2026: Begin Activity 6 Part One
-// GOAL: Proportional symbols representing attribute values of mapped features
-//STEPS:
-//Step 1. Create the Leaflet map--already done in createMap()
-//Step 2. Import GeoJSON data--already done in getData()
-//Step 3. Add circle markers for point features to the map--already done in AJAX callback
-//Step 4. Determine the attribute for scaling the proportional symbols
-//Step 5. For each feature, determine its value for the selected attribute
-//Step 6. Give each feature's circle marker a radius based on its attribute value
-
-// 02/21/2026: Begin Activity 6 Part 2
-//GOAL: Allow the user to sequence through the attributes and resymbolize the map 
-//   according to each attribute
-//STEPS:
-//Step 1. Create slider widget
-//Step 2. Create step buttons
-//Step 3. Create an array of the sequential attributes to keep track of their order
-//Step 4. Assign the current attribute based on the index of the attributes array
-//Step 5. Listen for user input via affordances
-//Step 6. For a forward step through the sequence, increment the attributes array index; 
-//   for a reverse step, decrement the attributes array index
-//Step 7. At either end of the sequence, return to the opposite end of the sequence on the next step
-//   (wrap around)
-//Step 8. Update the slider position based on the new index
-//Step 9. Reassign the current attribute based on the new attributes array index
-//Step 10. Resize proportional symbols according to each feature's value for the new attribute
-
+// GEOG 579 - Spring 2026 - Lab 1 - Hope McBride
 console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and minValue var in global scope so I can access them in all necessary functions
@@ -100,7 +74,7 @@ function createMap(){
     getData();
 };
 
-
+// Calculating the minimum value
 function calcMinValue(data){
     //create emtpy array to store all data values
     var allValues = [];
@@ -165,8 +139,7 @@ function pointToLayer(feature, latlng, attributes){
         fillOpacity: 0.9
     }
 
-
-    //console.log(Object.keys(feature.properties));
+    console.log(Object.keys(feature.properties));
     
     // for each feature, determine its value for the selected attribute
     var attValue = Number(feature.properties[attribute]);
@@ -181,7 +154,7 @@ function pointToLayer(feature, latlng, attributes){
     var popupContent = createPopupContent(feature.properties, attribute);
     
     //bind the popup to the circle marker    
-    layer.bindPopup(popupContent, {  offset: new L.Point(0,-options.radius)    
+    layer.bindPopup(popupContent, {  offset: new L.Point(0,-6)    
 
     });
     
@@ -198,9 +171,10 @@ function createPropSymbols(data, attributes){
         }
     }).addTo(map);
 
+    // Set up the map's entry point: a popup with instructions to click the proportional symbols
     var firstPopup = L.popup(firstPopup)
         .setLatLng([39.0119, -98.4842])
-        .setContent("Click on a proportional symbol to see data.")
+        .setContent("Click on the proportional symbols to see data.")
         .openOn(map);
 };
 
