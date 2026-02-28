@@ -78,9 +78,30 @@ function createMap(){
 
     CartoDB_VoyagerNoLabels.setOpacity(0.1);
 
+
+
+    var Thunderforest_MobileAtlas = L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}{r}.png?apikey={apikey}', {
+	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	apikey: '<your apikey>',
+	maxZoom: 22
+});
+
+    Thunderforest_MobileAtlas.addTo(map)
+
+
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+	maxZoom: 16
+});
+
+    Esri_WorldGrayCanvas.addTo(map)
+
     //call getData function
     getData();
 };
+
+
+
 
 function calcMinValue(data){
     //create emtpy array to store all data values
@@ -320,3 +341,7 @@ function processData(data){
 // the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
+var firstPopup = L.popup()
+    .setLatLng([39.0119, -98.4842])
+    .setContent("Select a proportional symbol to see a particular city's data.")
+    .openOn(map);
