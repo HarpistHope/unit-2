@@ -119,13 +119,13 @@ function calcPropRadius(attValue) {
 //     return popupContent;
 // };
 
-//Example 1.2 line 1...PopupContent constructor function
+//Refactoring Example 1.2 line 1...PopupContent constructor function
 function PopupContent(properties, attribute){
     this.properties = properties;
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p><b>City:</b> " + this.properties.City + "<p><b>Airports:</b> " + this.properties.Airports + "</p><p><b>Total Number of Enplanements in " + this.year + ":</b> " + this.passengers;
+    this.formatted = "<p>City: " + <b>this.properties.City</b>+ "<p>Airports:" + <b>this.properties.Airports</b> + "</p><p>Total Number of Enplanements in " + this.year + ":" + <b>this.passengers</b>;
 };
 
 //Example 2.1 line 1...function to convert markers to circle markers
@@ -156,15 +156,16 @@ function pointToLayer(feature, latlng, attributes){
     //create circle marker layer
     var layer = L.circleMarker(latlng, options);
 
-    //Example 1.3 line 1...in pointToLayer()
+    //Refactoring Example 1.3 line 1...in pointToLayer()
+   
     //create new popup content
     var popupContent = new PopupContent(feature.properties, attribute);
-
+   
     //bind the popup to the circle marker    
     layer.bindPopup(popupContent.formatted, { 
     	offset: new L.Point(0,-6)
     });
-    
+   
     //return the circle marker to the L.geoJson pointToLayer option
     return layer;
 };
