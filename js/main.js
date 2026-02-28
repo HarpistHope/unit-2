@@ -79,7 +79,7 @@ function createMap(){
     // CartoDB_VoyagerNoLabels.setOpacity(0.1);
 
 
-
+    // Use tile layer from leaflet-providers;
     var Thunderforest_MobileAtlas = L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}{r}.png?apikey={apikey}', {
 	attribution: 'Federal Aviation Administration (FAA) | Noun Project | &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	apikey: '<your apikey>',
@@ -99,8 +99,6 @@ function createMap(){
     //call getData function
     getData();
 };
-
-
 
 
 function calcMinValue(data){
