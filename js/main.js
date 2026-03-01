@@ -63,7 +63,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ": <b>" + this.passengers + "</b></p>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in: <b></p><p>" + this.year + ":" + this.passengers + "</b></p>";
 };
 
 // function to create circle markers for point features and bind the popups to the markers
@@ -76,8 +76,8 @@ function pointToLayer(feature, latlng, attributes){
     // create marker options
     var options = {
         radius: 8,
-        fillColor: "#B2FFFF",
-        color: "darkgray",
+        fillColor: "#335ef9",
+        color: "white",
         weight: 1,
         opacity: 1,
         fillOpacity: 1
@@ -235,7 +235,7 @@ function createSequenceControls(attributes){
 
 //Above Example 3.10...Step 3: build an attributes array from the data
 function processData(data){
-    
+
     //empty array to hold attributes
     var attributes = [];
 
