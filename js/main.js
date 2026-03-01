@@ -236,12 +236,14 @@ function createSequenceControls(attributes){
             // create the control container div with a particular class name
             var container = L.DomUtil.create('div', 'sequence-control-container');
 
+            // log attribution for the airplane icons used for the step buttons  
+            console.log("Noun Project Icon for the range slider buttons: Airplane by Blackwoodmedia.com.au from <a href='https://thenounproject.com/browse/icons/term/airplane/' target='_blank' title='Airplane Icons'>Noun Project</a> (CC BY 3.0)");
             //add first skip button that that it will appear to the left of the range slider
             container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
             // add second skip button
-            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/reversed_noun-airplane-299060.png"></button>');
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/flipped_noun-airplane-299060.png"></button>');
 
             // ... initialize other DOM elements
             // //create range input element (slider)

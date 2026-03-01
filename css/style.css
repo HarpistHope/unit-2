@@ -6,8 +6,8 @@
     }
 
 .leaflet-popup-content {
-    background: #4e9fe5; 
-    color: white;  
+    background: #B2FFFF; 
+    color: #55524f;  
     border-radius: 1px;
     font-size: 14px;
     line-height: 20px;
@@ -15,20 +15,20 @@
 }
 
 .leaflet-popup-content-wrapper{
-    background: #4e9fe5;
+    background: #B2FFFF;
     border-radius: 5px;
     opacity: 1
 }
 
 .leaflet-popup-tip{
-    background: #4e9fe5;
+    background:#B2FFFF;
     opacity: 1
 }
 
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: rgba(26, 149, 250, 0.8);  
+    background-color: #B2FFFF;  
     padding: 10px;  
     line-height: 45px;  
     text-align: center;  
