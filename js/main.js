@@ -270,7 +270,7 @@ function createLegend(attributes){
             var container = L.DomUtil.create('div', 'legend-control-container');
 
             //PUT YOUR SCRIPT TO CREATE THE TEMPORAL LEGEND HERE
-            container.innerHTML = '<p class="temporalLegend">Enplanements in <span class="year">2013</span></p>';
+            container.innerHTML = '<p class="temporalLegend">Enplanements in <span class="year">2013</span></p><p>(rounded to the nearest million)</p>';
 
             //Example 3.5 line 15...Step 1: start attribute legend svg string
             var svg = '<svg id="attribute-legend" width="160px" height="100px">';
