@@ -252,8 +252,8 @@ function createSequenceControls(attributes){
 
             //below Example 3.6...add step buttons
             // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
-            document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
-            document.querySelector('#panel').insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
+            container.insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
+            container.insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
             
             document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
             document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
