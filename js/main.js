@@ -273,7 +273,7 @@ function createLegend(attributes){
             container.innerHTML = '<p class="temporalLegend">Enplanements in <span class="year">2013</span></p>';
 
             //Example 3.5 line 15...Step 1: start attribute legend svg string
-            var svg = '<svg id="attribute-legend" width="160px" height="60px">';
+            var svg = '<svg id="attribute-legend" width="160px" height="100px">';
 
             //array of circle names to base loop on
             var circles = ["max", "mean", "min"];
@@ -292,7 +292,7 @@ function createLegend(attributes){
                 var textY = i * 20 + 20;
 
                 // text string
-                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round(dataStats[circles[i]]*100)/100 + '</text>';
+                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round(dataStats[circles[i]])/1000000 + ' million</text>';
                 
             
             }; 
