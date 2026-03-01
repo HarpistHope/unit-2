@@ -289,6 +289,7 @@ function createLegend(attributes){
                 minValue = calcMinValue(json);
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
+                createLegend(attributes);
             })
 
     };
