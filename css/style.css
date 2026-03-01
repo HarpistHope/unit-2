@@ -1,8 +1,7 @@
 /*Add CSS styles here*/
 #map {    
-    height: 600px;    
-    width: 100%;
-    display: inline-block;
+    height: 500px;    
+    width: 95%;
     }
 
 .leaflet-popup-content {
@@ -25,25 +24,28 @@
     opacity: 0.9
 }
 
-#panel {  
+/* #panel {  
     width: 30%;  
     padding: 20px;  
     display: inline-block;  
     vertical-align: top;  
     text-align: center;  
     line-height: 42px;  
-}
+} */
 
 .range-slider {  
-    width: 25%;  
+    width: 50%;  
+    margin-bottom: 10px;
 }  
 
 .step {  
-    width: 20%;  
+    width: 48%;  
+    height: 32px;
 }  
 
 .step img {  
-    width: 30%;  
+    height: 36px;
+    width: auto;  
 }  
 
 #forward {
