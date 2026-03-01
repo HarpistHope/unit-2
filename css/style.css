@@ -40,13 +40,13 @@
 }  
 
 .step {  
-    width: 48%;  
-    height: 32px;
+    width: auto;  
+    height: auto;
 }  
 
 .step img {  
-    height: 36px;
     width: auto;  
+    height: auto;
 }  
 
 #forward {
