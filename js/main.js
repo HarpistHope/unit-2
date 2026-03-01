@@ -275,6 +275,9 @@ function createSequenceControls(attributes){
                     //sequence
                 })
             })
+           
+            //disable any mouse event listeners for the container
+            L.DomEvent.disableClickPropagation(container);
 
             return container;
         }

@@ -2,7 +2,7 @@
 #map {    
     height: 500px;    
     width: 95%;
-    margin: 0 auto;
+    margin: 0 auto; 
     }
 
 .leaflet-popup-content {
@@ -45,8 +45,8 @@
 }  
 
 .step img {  
-    width: auto;  
-    height: auto;
+    width: 35px;  
+    height: 35px;
 }  
 
 #forward {
