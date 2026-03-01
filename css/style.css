@@ -25,34 +25,25 @@
     opacity: 0.9
 }
 
-/* #panel {  
-    width: 30%;  
-    padding: 20px;  
-    display: inline-block;  
-    vertical-align: top;  
+.sequence-control-container {  
+    width: 350px;  
+    height: 30px;  
+    background-color: rgba(255,255,255,0.8);  
+    padding: 10px;  
+    line-height: 45px;  
     text-align: center;  
-    line-height: 42px;  
-} */
+    border: solid gray 1px;  
+}  
 
 .range-slider {  
-    width: 50%;  
-    margin-bottom: 10px;
+    width: 250px;  
 }  
 
 .step {  
-    width: auto;  
-    height: auto;
+    width: 40px;  
 }  
 
 .step img {  
-    width: 35px;  
-    height: 35px;
-}  
-
-#forward {
-    float: right;
-}
-    
-#reverse {  
-    float: left;  
-}
+    width: 100%;  
+    height: auto;  
+} 

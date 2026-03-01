@@ -239,12 +239,6 @@ function createSequenceControls(attributes){
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
-            //set slider attributes
-            container.querySelector(".range-slider").max = 10;
-            container.querySelector(".range-slider").min = 0;
-            container.querySelector(".range-slider").value = 0;
-            container.querySelector(".range-slider").step = 1;
-
             //add skip buttons
             container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
             container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/reversed_noun-airplane-299060.png"></button>');
@@ -267,14 +261,6 @@ function createSequenceControls(attributes){
             
             // document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
             // document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
-            
-            //Below Example 3.6 in createSequenceControls()
-            //Step 5: click listener for buttons
-            document.querySelectorAll('.step').forEach(function(step){
-                step.addEventListener("click", function(){
-                    //sequence
-                })
-            })
            
             //disable any mouse event listeners for the container
             L.DomEvent.disableClickPropagation(container);
@@ -283,8 +269,20 @@ function createSequenceControls(attributes){
         }
     });
 
-    map.addControl(new SequenceControl());    // add listeners after adding control}
+    map.addControl(new SequenceControl());   
 
+    //SET SLIDER ATTRIBUTES AND ATTACH LISTENERS HERE
+    container.querySelector(".range-slider").max = 10;
+    container.querySelector(".range-slider").min = 0;
+    container.querySelector(".range-slider").value = 0;
+    container.querySelector(".range-slider").step = 1;
+
+     //Step 5: click listener for buttons
+    document.querySelectorAll('.step').forEach(function(step){
+        step.addEventListener("click", function(){
+                    //sequence
+            })
+        })
 
 // //Sequence Slider Step 1: Create new sequence controls
 // function createSequenceControls(attributes){
