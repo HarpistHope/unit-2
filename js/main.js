@@ -239,6 +239,12 @@ function createSequenceControls(attributes){
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
+            //set slider attributes
+            container.querySelector(".range-slider").max = 10;
+            container.querySelector(".range-slider").min = 0;
+            container.querySelector(".range-slider").value = 0;
+            container.querySelector(".range-slider").step = 1;
+
             //add skip buttons
             container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
             container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/reversed_noun-airplane-299060.png"></button>');
@@ -248,11 +254,11 @@ function createSequenceControls(attributes){
             // var slider = "<input class='range-slider' type='range'></input>";
             // document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
 
-            //set slider attributes
-            document.querySelector(".range-slider").max = 10;
-            document.querySelector(".range-slider").min = 0;
-            document.querySelector(".range-slider").value = 0;
-            document.querySelector(".range-slider").step = 1;
+            // //set slider attributes
+            // document.querySelector(".range-slider").max = 10;
+            // document.querySelector(".range-slider").min = 0;
+            // document.querySelector(".range-slider").value = 0;
+            // document.querySelector(".range-slider").step = 1;
 
             // //below Example 3.6...add step buttons
             // // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
