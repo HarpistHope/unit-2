@@ -63,7 +63,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in: <b></p><p>" + this.year + ":" + this.passengers + "</b></p>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Year: <b>" + this.year + "</b></p><p>Total Number of Enplanements: <b></p><p>" + this.passengers + "</b></p>";
 };
 
 // function to create circle markers for point features and bind the popups to the markers
@@ -187,15 +187,6 @@ function createSequenceControls(attributes){
     document.querySelector(".range-slider").value = 0;
     document.querySelector(".range-slider").step = 1;
 
-    //  //Step 5: click listener for buttons
-    // document.querySelectorAll('.step').forEach(function(step){
-    //     step.addEventListener("click", function(){
-    //                 //sequence
-    //                 // I can leave this empty for now
-    //                 // Do i even need thi
-    //         })
-    //     })
-
     //Step 5: input listener for slider
     document.querySelector('.range-slider').addEventListener('input', function(){
         //Step 6: get the new index value
@@ -206,6 +197,7 @@ function createSequenceControls(attributes){
         updatePropSymbols(attributes[index]);
     });
 
+    // click listener for buttons
     document.querySelectorAll('.step').forEach(function(step){
         step.addEventListener("click", function(){
             var index = document.querySelector('.range-slider').value;
