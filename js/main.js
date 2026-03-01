@@ -236,10 +236,13 @@ function createSequenceControls(attributes){
             // create the control container div with a particular class name
             var container = L.DomUtil.create('div', 'sequence-control-container');
 
-            // ... initialize other DOM elements
             //create range input element (slider)
-            var slider = "<input class='range-slider' type='range'></input>";
-            document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
+            container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
+
+            // ... initialize other DOM elements
+            // //create range input element (slider)
+            // var slider = "<input class='range-slider' type='range'></input>";
+            // document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
 
             //set slider attributes
             document.querySelector(".range-slider").max = 10;
