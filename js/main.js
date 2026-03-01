@@ -283,16 +283,16 @@ function createLegend(attributes){
 
                 //Step 3: assign the r and cy attributes  
                 var radius = calcPropRadius(dataStats[circles[i]]);  
-                var cy = 130 - radius;  
+                var cy = 59 - radius;  
 
                 //circle string  
-                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#335ef9" fill-opacity="0.8" stroke="whitesmoke" cx="65"/>';  
+                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '" cy="' + cy + '" fill="#335ef9" fill-opacity="0.8" stroke="whitesmoke" cx="65"/>';  
                 
                 // evenly space out labels
                 var textY = i * 20 + 20;
 
                 // text string
-                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round(dataStats[circles[i]]*100)/100 + " million" + '</text>';
+                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round(dataStats[circles[i]]*100)/100 + '</text>';
                 
             
             }; 
