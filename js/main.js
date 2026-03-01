@@ -2,7 +2,7 @@
 // Favicon by MHDK Avatar at the Noun Project https://thenounproject.com/icon/airplane-8160142/
 console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
-//declare map and minValue var in global scope so I can access them in all necessary functions
+//declare map and dataStats var in global scope so I can access them in all necessary functions
 var map;
 var dataStats = {};
 
@@ -26,20 +26,34 @@ function createMap(){
     getData();
 };
 
-// Calculating the minimum value
+// Calculating the min, max, and mean values; also sum each city's total enplanements to create a static bar chart (calculate, arrange)
 function calcStats(data){
     //create emtpy array to store all data values
     var allValues = [];
+    // create an array for city totals
+    dataStats.allcityTotals = [];
+
     // loop through each city
     for (var city of data.features){
+        // create cityTotal variable 
+        var cityTotal = 0;
+
         //loop through each year
         for(var year = 2013; year <= 2023; year+=1){
-            console.log(year)
+            //console.log(year)
             // get enplanement numbers for current year
             var value = city.properties[year]
             // add value to array
             allValues.push(value);
+            // add sum values to cityTotal
+            cityTotal += value;
         }
+
+        // I'm still in the loop, push each city and its total to allcityTotals
+        dataStats.allcityTotals.push({
+            city: city.properties.City,
+            total: cityTotal
+        });
     }
     // get min, max, mean stats for our array
     dataStats.min = Math.min(...allValues);
@@ -49,6 +63,8 @@ function calcStats(data){
     dataStats.mean = sum/ allValues.length;
     
 }
+
+console.log(dataStats.allcityTotals)
 
 // Calculate the radius of each proportional symbol
 function calcPropRadius(attValue) {
@@ -201,7 +217,7 @@ function createSequenceControls(attributes){
         //Step 6: get the new index value
         var index = this.value;
         //console.log(index)
-        //Called in both step button and slider event listener handlers
+
         //Step 9: pass new attribute to update symbols
         updatePropSymbols(attributes[index]);
     });
@@ -226,7 +242,6 @@ function createSequenceControls(attributes){
             document.querySelector('.range-slider').value = index;
             //console.log(index);
 
-            //Called in both step button and slider event listener handlers
             //Step 9: pass new attribute to update symbols
             updatePropSymbols(attributes[index]);
         })
@@ -293,7 +308,6 @@ function createLegend(attributes){
 
                 // text string
                 svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + ((dataStats[circles[i]])/1000000).toFixed(2) + ' million</text>';
-                
             
             }; 
 
@@ -309,6 +323,7 @@ function createLegend(attributes){
 
     map.addControl(new LegendControl());
 };
+
 
 // Import GeoJSON data
     function getData(map){
