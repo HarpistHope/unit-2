@@ -62,3 +62,20 @@
     text-align: center;  
     border: solid darkslategray 1px;  
 }
+
+
+.chart{
+    max-width: 600px;
+    height: auto;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.chart .chart_types{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.chart .chart_types button{
+    padding: 10px 25px;
+}

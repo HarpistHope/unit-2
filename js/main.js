@@ -49,7 +49,7 @@ function calcStats(data){
             cityTotal += value;
         }
 
-        // I'm still in the loop, push each city and its total to allcityTotals
+        // I'm still in the loop, push each city + total pairs to allcityTotals array 
         allcityTotals.push({
             city: city.properties.City,
             total: cityTotal
@@ -64,6 +64,7 @@ function calcStats(data){
 
 }
 
+// check the array; it logs the cities and their total enplanements over the decade
 console.log(allcityTotals)
 
 
@@ -347,3 +348,24 @@ function createLegend(attributes){
 // the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
