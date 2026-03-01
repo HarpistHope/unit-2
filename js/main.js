@@ -4,7 +4,7 @@ console.log("This map shows the annual number of passengers boarding airplanes (
 
 //declare map and minValue var in global scope so I can access them in all necessary functions
 var map;
-var minValue;
+var dataStats = {};
 
 //function to instantiate the Leaflet map
 function createMap(){
@@ -27,24 +27,27 @@ function createMap(){
 };
 
 // Calculating the minimum value
-function calcMinValue(data){
+function calcStats(data){
     //create emtpy array to store all data values
     var allValues = [];
-    // loop through each prefecture
-    for (var prefecture of data.features){
+    // loop through each city
+    for (var city of data.features){
         //loop through each year
         for(var year = 2013; year <= 2023; year+=1){
-            //console.log(year)
-            // get visitor numbers for current year
-            var value = prefecture.properties[year]
+            console.log(year)
+            // get enplanement numbers for current year
+            var value = city.properties[year]
             // add value to array
             allValues.push(value);
         }
     }
-    // get min value of our array
-    var minValue = Math.min(...allValues)
-    //console.log(minValue)
-    return minValue;
+    // get min, max, mean stats for our array
+    dataStats.min = Math.min(...allValues);
+    dataStats.max = Math.max(...allValues);
+    //calculate meanValue
+    var sum = allValues.reduce(function(a, b){return a+b;});
+    dataStats.mean = sum/ allValues.length;
+    
 }
 
 // Calculate the radius of each proportional symbol
@@ -71,7 +74,7 @@ function pointToLayer(feature, latlng, attributes){
     //Step 4: Assign the current attribute based on the first index of the attributes array
     var attribute = attributes[0];
     //check
-    console.log(attribute);
+    //console.log(attribute);
 
     // create marker options
     var options = {
@@ -197,7 +200,7 @@ function createSequenceControls(attributes){
     document.querySelector('.range-slider').addEventListener('input', function(){
         //Step 6: get the new index value
         var index = this.value;
-        console.log(index)
+        //console.log(index)
         //Called in both step button and slider event listener handlers
         //Step 9: pass new attribute to update symbols
         updatePropSymbols(attributes[index]);
@@ -221,7 +224,7 @@ function createSequenceControls(attributes){
 
             //Step 8: update slider
             document.querySelector('.range-slider').value = index;
-            console.log(index);
+            //console.log(index);
 
             //Called in both step button and slider event listener handlers
             //Step 9: pass new attribute to update symbols
@@ -250,7 +253,7 @@ function processData(data){
     };
 
     //check result
-    console.log(attributes);
+    //console.log(attributes);
 
     return attributes;
 };
@@ -267,8 +270,39 @@ function createLegend(attributes){
             var container = L.DomUtil.create('div', 'legend-control-container');
 
             //PUT YOUR SCRIPT TO CREATE THE TEMPORAL LEGEND HERE
-            container.innerHTML = '<p class="temporalLegend">Enplanements in<span class="year">2013</span></p>';
+            container.innerHTML = '<p class="temporalLegend">Enplanements in <span class="year">2013</span></p>';
 
+            //Example 3.5 line 15...Step 1: start attribute legend svg string
+            var svg = '<svg id="attribute-legend" width="160px" height="60px">';
+
+            //array of circle names to base loop on
+            var circles = ["max", "mean", "min"];
+
+            //Step 2: loop to add each circle and text to svg string
+            for (var i=0; i<circles.length; i++){
+
+                //Step 3: assign the r and cy attributes  
+                var radius = calcPropRadius(dataStats[circles[i]]);  
+                var cy = 130 - radius;  
+
+                //circle string  
+                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '"cy="' + cy + '" fill="#335ef9" fill-opacity="0.8" stroke="whitesmoke" cx="65"/>';  
+                
+                // evenly space out labels
+                var textY = i * 20 + 20;
+
+                // text string
+                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round(dataStats[circles[i]]*100)/100 + " million" + '</text>';
+                
+            
+            }; 
+
+            //close svg string
+            svg += "</svg>";
+
+            //add attribute legend svg to container
+            container.insertAdjacentHTML('beforeend',svg);
+            
             return container;
         }
     });
@@ -286,11 +320,11 @@ function createLegend(attributes){
             .then(function(json){
                  //create an attributes array
                 var attributes = processData(json);
-                minValue = calcMinValue(json);
+                calcStats(json);
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
                 createLegend(attributes);
-            })
+            });
 
     };
 
