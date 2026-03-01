@@ -180,7 +180,7 @@ function createPropSymbols(data, attributes){
     }).addTo(map);
 
     // Set up the map's entry point: a popup with instructions to click the proportional symbols
-    var firstPopup = L.popup(firstPopup)
+    var firstPopup = L.popup()
         .setLatLng([39.0119, -98.4842])
         .setContent("Click on proportional symbols to see data.")
         .openOn(map);
