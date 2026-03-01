@@ -5,6 +5,8 @@ console.log("This map shows the annual number of passengers boarding airplanes (
 //declare map and dataStats var in global scope so I can access them in all necessary functions
 var map;
 var dataStats = {};
+// create an array for city totals
+var allcityTotals = [];
 
 //function to instantiate the Leaflet map
 function createMap(){
@@ -30,8 +32,6 @@ function createMap(){
 function calcStats(data){
     //create emtpy array to store all data values
     var allValues = [];
-    // create an array for city totals
-    dataStats.allcityTotals = [];
 
     // loop through each city
     for (var city of data.features){
@@ -50,7 +50,7 @@ function calcStats(data){
         }
 
         // I'm still in the loop, push each city and its total to allcityTotals
-        dataStats.allcityTotals.push({
+        allcityTotals.push({
             city: city.properties.City,
             total: cityTotal
         });
@@ -61,10 +61,11 @@ function calcStats(data){
     //calculate meanValue
     var sum = allValues.reduce(function(a, b){return a+b;});
     dataStats.mean = sum/ allValues.length;
-    
+
 }
 
-console.log(dataStats.allcityTotals)
+console.log(allcityTotals)
+
 
 // Calculate the radius of each proportional symbol
 function calcPropRadius(attValue) {
