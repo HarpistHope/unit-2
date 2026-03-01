@@ -6,7 +6,7 @@
     }
 
 .leaflet-popup-content {
-    background: #B2FFFF; 
+    background: #335ef9; 
     color: #55524f;  
     border-radius: 1px;
     font-size: 14px;
@@ -15,20 +15,20 @@
 }
 
 .leaflet-popup-content-wrapper{
-    background: #B2FFFF;
+    background: #335ef9;
     border-radius: 5px;
     opacity: 1
 }
 
 .leaflet-popup-tip{
-    background:#B2FFFF;
+    background:#335ef9;
     opacity: 1
 }
 
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: #B2FFFF;  
+    background-color: #335ef9;  
     padding: 10px;  
     line-height: 45px;  
     text-align: center;  
@@ -52,3 +52,13 @@
     width: 100%;  
     height: auto;  
 } 
+
+.legend-control-container {
+    width: 200px;  
+    height: 30px;  
+    background-color: #335ef9;  
+    padding: 10px;  
+    line-height: 45px;  
+    text-align: center;  
+    border: solid white 1px;  
+}
