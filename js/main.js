@@ -292,7 +292,7 @@ function createLegend(attributes){
                 var textY = i * 20 + 20;
 
                 // text string
-                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + Math.round((dataStats[circles[i]])/1000000).toFixed(2) + ' million</text>';
+                svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + ((dataStats[circles[i]])/1000000).toFixed(2) + ' million</text>';
                 
             
             }; 
