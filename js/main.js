@@ -63,7 +63,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Year: <b>" + this.year + "</b></p><p>Total Number of Enplanements: <b></p><p>" + this.passengers + "</b></p>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Year: <b>" + this.year + "</b></p><p>Total Number of Enplanements: <b>" + this.passengers + "</b></p>";
 };
 
 // function to create circle markers for point features and bind the popups to the markers
@@ -124,6 +124,12 @@ function createPropSymbols(data, attributes){
 
 // function to resize/update proportional symbols according to new attribute values
 function updatePropSymbols(attribute){
+    // get the year from the attribute
+    var year = attribute
+    // update temporal legend for each year
+    document.querySelector("span.year").innerHTML = year;
+
+    // update size and popup content of each prop symbol 
     map.eachLayer(function(layer){
         //Example 3.18 line 4
         if (layer.feature && layer.feature.properties[attribute]){
@@ -249,7 +255,26 @@ function processData(data){
     return attributes;
 };
 
+// function to create the temporal legend
+function createLegend(attributes){
+    var LegendControl = L.Control.extend({
+        options: {
+            position: 'bottomright'
+        },
 
+        onAdd: function () {
+            // create the control container with a particular class name
+            var container = L.DomUtil.create('div', 'legend-control-container');
+
+            //PUT YOUR SCRIPT TO CREATE THE TEMPORAL LEGEND HERE
+            container.innerHTML = '<p class="temporalLegend">Enplanements in<span class="year">2013</span></p>';
+
+            return container;
+        }
+    });
+
+    map.addControl(new LegendControl());
+};
 
 // Import GeoJSON data
     function getData(map){
