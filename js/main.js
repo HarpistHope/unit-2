@@ -240,8 +240,8 @@ function createSequenceControls(attributes){
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
             //add skip buttons
-            container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/reversed_noun-airplane-299060.png"></button>'); 
-            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/noun-airplane-299060.png"></button>');
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/reversed_noun-airplane-299060.png"></button>');
 
             // ... initialize other DOM elements
             // //create range input element (slider)
