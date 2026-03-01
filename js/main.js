@@ -138,8 +138,8 @@ function pointToLayer(feature, latlng, attributes){
     // create marker options
     var options = {
         radius: 8,
-        fillColor: "#4e9fe5",
-        color: "#000",
+        fillColor: "#B2FFF",
+        color: "whitesmoke",
         weight: 1,
         opacity: 1,
         fillOpacity: 0.8
