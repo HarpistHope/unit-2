@@ -10,7 +10,7 @@
     color: white;  
     border-radius: 1px;
     font-size: 14px;
-    line-height: 28px;
+    line-height: 20px;
     opacity: 1
 }
 
@@ -22,19 +22,19 @@
 
 .leaflet-popup-tip{
     background: #4e9fe5;
-    opacity: 0.9
+    opacity: 1
 }
 
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: rgba(255,255,255,0.8);  
+    background-color: rgba(26, 149, 250, 0.8);  
     padding: 10px;  
     line-height: 45px;  
     text-align: center;  
-    border: solid gray 1px;  
+    border: solid white 1px;  
 
-    /* Making the layout prettier/more spread out: */
+    /* Making the layout prettier/more spread out/centered: */
     display: flex; 
     align-items: center;
     justify-content: space-between;

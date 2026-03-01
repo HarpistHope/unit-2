@@ -125,7 +125,7 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
-    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ":<b>" + this.passengers + "</b></p>";
+    this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Total Number of Enplanements in " + this.year + ": <b>" + this.passengers + "</b></p>";
 };
 
 //Example 2.1 line 1...function to convert markers to circle markers
@@ -236,11 +236,11 @@ function createSequenceControls(attributes){
             // create the control container div with a particular class name
             var container = L.DomUtil.create('div', 'sequence-control-container');
 
+            //add first skip button that that it will appear to the left of the range slider
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
-
-            //add skip buttons
-            container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/noun-airplane-299060.png"></button>'); 
+            // add second skip button
             container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/reversed_noun-airplane-299060.png"></button>');
 
             // ... initialize other DOM elements
