@@ -33,6 +33,11 @@
     line-height: 45px;  
     text-align: center;  
     border: solid gray 1px;  
+
+    /* Making the layout prettier/more spread out: */
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
 }  
 
 .range-slider {  

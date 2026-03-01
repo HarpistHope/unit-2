@@ -272,10 +272,11 @@ function createSequenceControls(attributes){
     map.addControl(new SequenceControl());   
 
     //SET SLIDER ATTRIBUTES AND ATTACH LISTENERS HERE
-    container.querySelector(".range-slider").max = 10;
-    container.querySelector(".range-slider").min = 0;
-    container.querySelector(".range-slider").value = 0;
-    container.querySelector(".range-slider").step = 1;
+    //set slider attributes
+    document.querySelector(".range-slider").max = 10;
+    document.querySelector(".range-slider").min = 0;
+    document.querySelector(".range-slider").value = 0;
+    document.querySelector(".range-slider").step = 1;
 
      //Step 5: click listener for buttons
     document.querySelectorAll('.step').forEach(function(step){
