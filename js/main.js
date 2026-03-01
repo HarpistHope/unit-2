@@ -55,7 +55,7 @@ function calcPropRadius(attValue) {
     // constant factor adjusts symbol sizes evenly
     var minRadius = 7;
     // Flannery Appearance Compensation formula
-    var radius = 1.0083 * Math.pow(attValue/minValue,0.5716) * minRadius
+    var radius = 1.0083 * Math.pow(attValue/dataStats.min, 0.5716) * minRadius
 
     return radius;
 };
