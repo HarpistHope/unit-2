@@ -239,24 +239,28 @@ function createSequenceControls(attributes){
             //create range input element (slider)
             container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
+            //add skip buttons
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="reverse" title="Reverse"><img src="img/reversed_noun-airplane-299060.png"></button>'); 
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward"><img src="img/noun-airplane-299060.png"></button>');
+
             // ... initialize other DOM elements
             // //create range input element (slider)
             // var slider = "<input class='range-slider' type='range'></input>";
             // document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
 
-            //set slider attributes
-            document.querySelector(".range-slider").max = 10;
-            document.querySelector(".range-slider").min = 0;
-            document.querySelector(".range-slider").value = 0;
-            document.querySelector(".range-slider").step = 1;
+            // //set slider attributes
+            // document.querySelector(".range-slider").max = 10;
+            // document.querySelector(".range-slider").min = 0;
+            // document.querySelector(".range-slider").value = 0;
+            // document.querySelector(".range-slider").step = 1;
 
-            //below Example 3.6...add step buttons
-            // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
-            container.insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
-            container.insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
+            // //below Example 3.6...add step buttons
+            // // Noun Project Icon: Airplane by Blackwoodmedia.com.au from <a href="https://thenounproject.com/browse/icons/term/airplane/" target="_blank" title="Airplane Icons">Noun Project</a> (CC BY 3.0)
+            // container.insertAdjacentHTML('beforeend','<button class="step" id="forward">Forward</button>');
+            // container.insertAdjacentHTML('beforeend','<button class="step" id="reverse">Reverse</button>');
             
-            document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
-            document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
+            // document.querySelector('#reverse').insertAdjacentHTML('beforeend',"<img src='img/noun-airplane-299060.png'>");
+            // document.querySelector('#forward').insertAdjacentHTML('beforeend',"<img src='img/reversed_noun-airplane-299060.png'>")
             
             //Below Example 3.6 in createSequenceControls()
             //Step 5: click listener for buttons
