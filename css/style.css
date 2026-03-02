@@ -85,12 +85,18 @@
     padding: 10px 25px;
 }
 
-#initialContent{
+.initialContent{
     margin: auto;
     text-align: center;
 }
 
-#infoParagraphs{
+.footerText{
+    width: 75%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.infoParagraphs{
     width: 95%;
     margin: 0 auto;
 }
