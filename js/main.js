@@ -1,11 +1,12 @@
 // GEOG 575 - Spring 2026 - Lab 1 - Hope McBride
 // Public domain Favicon available at https://pinhead.ink/; icon title = airport_terminal_with_plane_takeoff
-console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
+console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 17 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and dataStats var in global scope so I can access them in all necessary functions
 var map;
 var dataStats = {};
-// create an array for city totals
+
+// create an array for city totals to be used in the chart under map
 var allcityTotals = [];
 
 //function to instantiate the Leaflet map
@@ -16,34 +17,14 @@ function createMap(){
         zoom: 4
     });
 
-    var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        maxZoom: 17,
-        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    var Stadia_StamenTerrainBackground = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}', {
+        minZoom: 2,
+        maxZoom: 5,
+        attribution: 'Federal Aviation Administration (FAA) | Blackwoodmedia.com.au at the Noun Project | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        ext: 'png'
     });
-
-    OpenTopoMap.addTo(map);
     
-//     var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
-//         attribution: 'Federal Aviation Administration (FAA) | Noun Project | Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
-//         bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
-//         minZoom: 1,
-//         maxZoom: 8,
-//         format: 'jpg',
-//         time: '',
-//         tilematrixset: 'GoogleMapsCompatible_Level'
-
-    
-// });
-
-//     NASAGIBS_ViirsEarthAtNight2012.addTo(map);
-
-    // // Use tile layer from leaflet-providers
-    // var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    //     attribution: 'Federal Aviation Administration (FAA) | Noun Project | Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-    //     maxZoom: 16
-    // });
-
-    // Esri_WorldGrayCanvas.addTo(map)
+    Stadia_StamenTerrainBackground.addTo(map);
 
     //call getData function
     getData();
@@ -71,7 +52,7 @@ function calcStats(data){
             cityTotal += value;
         }
 
-        // I'm still in the loop, push each city + total pairs to allcityTotals array 
+        // While I'm still in the loop, push each city + total pairs to allcityTotals array 
         allcityTotals.push({
             city: city.properties.City,
             total: cityTotal
@@ -119,8 +100,8 @@ function pointToLayer(feature, latlng, attributes){
     // create marker options
     var options = {
         radius: 8,
-        fillColor: "crimson",
-        color: "black",
+        fillColor: "rgb(128, 155, 218)",
+        color: "clamshell",
         weight: 1,
         opacity: 1,
         fillOpacity: 1
@@ -325,12 +306,12 @@ function createLegend(attributes){
                 var cy = 59 - radius;  
 
                 //circle string  
-                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '" cy="' + cy + '" fill="#335ef9" fill-opacity="0.8" stroke="whitesmoke" cx="30"/>';  
+                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '" cy="' + cy + '" fill="rgb(128, 155, 218)" fill-opacity="0.8" stroke="clamshell" cx="30"/>';  
                 
                 // evenly space out labels
                 var textY = i * 20 + 20;
 
-                // text string
+                // text string; round enplanement counts to nearest ten-thousand, show in million format for easier reading
                 svg += '<text id="' + circles[i] + '-text" x="65" y="' + textY + '">' + ((dataStats[circles[i]])/1000000).toFixed(2) + ' million</text>';
             
             }; 
@@ -374,15 +355,11 @@ document.addEventListener('DOMContentLoaded',createMap)
 
 
 // Add a chart showing total enplanements; see console for attribution credit
-// store the chart code in an annoymous function within another event listener that will only run once the DOM content has loaded
-//document.addEventListener('DOMContentLoaded',function(){
 console.log("I have added a chart showing total enplanements for each city over the decade.")
 console.log("This chart is based on the tutorial taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
-console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
+console.log("This chart uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
 
-
-
-// declare global variable myChart to destroy and create new charts in createChart and setChartType functions
+// declare global variable myChart to use for destroying and creating new charts in createChart and setChartType functions
 let myChart;
 
 function setChartType(chartType){
