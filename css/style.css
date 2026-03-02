@@ -65,9 +65,14 @@
 
 .chart{
     max-width: 600px;
-    height: auto;
+    height: 400px;
     padding: 50px;
     margin: 40px auto;
+}
+
+#myChart{
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .chart .chart_types{

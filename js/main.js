@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded',createMap)
 // store the chart code in an annoymous function within another event listener that will only run once the DOM content has loaded
 //document.addEventListener('DOMContentLoaded',function(){
 console.log("I have added a chart showing total enplanements for each city over the decade.")
-console.log("This chart is based on the guide taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
+console.log("This chart is based on the tutorial taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
 console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
 
 
@@ -391,9 +391,6 @@ function createChart(data, type){
             beginAtZero: true
             }
         },
-
-        maintainAspectRatio: false
-        
         }
     });
 };
