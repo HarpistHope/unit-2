@@ -16,20 +16,26 @@ function createMap(){
         zoom: 4
     });
 
-
-    var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
-        attribution: 'Federal Aviation Administration (FAA) | Noun Project | Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
-        bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
-        minZoom: 1,
-        maxZoom: 8,
-        format: 'jpg',
-        time: '',
-        tilematrixset: 'GoogleMapsCompatible_Level'
+    var Stadia_StamenWatercolor = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}', {
+	minZoom: 1,
+	maxZoom: 16,
+	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	ext: 'jpg'
+});
+    Stadia_StamenWatercolor.addTo(map);
+//     var NASAGIBS_ViirsEarthAtNight2012 = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+//         attribution: 'Federal Aviation Administration (FAA) | Noun Project | Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+//         bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+//         minZoom: 1,
+//         maxZoom: 8,
+//         format: 'jpg',
+//         time: '',
+//         tilematrixset: 'GoogleMapsCompatible_Level'
 
     
-});
+// });
 
-    NASAGIBS_ViirsEarthAtNight2012.addTo(map);
+//     NASAGIBS_ViirsEarthAtNight2012.addTo(map);
 
     // // Use tile layer from leaflet-providers
     // var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
@@ -113,8 +119,8 @@ function pointToLayer(feature, latlng, attributes){
     // create marker options
     var options = {
         radius: 8,
-        fillColor: "#gold",
-        color: "slategray",
+        fillColor: "crimson",
+        color: "black",
         weight: 1,
         opacity: 1,
         fillOpacity: 1
