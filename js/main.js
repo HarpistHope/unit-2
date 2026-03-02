@@ -32,7 +32,8 @@ function createMap(){
 function calcStats(data){
     //create emtpy array to store all data values
     var allValues = [];
-
+    // reset the city totals array so it doesn't duplicate if fetch is called again
+    allcityTotals = [];
     // loop through each city
     for (var city of data.features){
         // create cityTotal variable 
@@ -341,7 +342,7 @@ function createLegend(attributes){
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
                 createLegend(attributes);
-                createChart(allcityTotals, 'type');
+                createChart(allcityTotals, 'bar');
             });
 
     };
@@ -358,9 +359,9 @@ console.log("I have added a chart showing total enplanements for each city over 
 console.log("This chart is based on the guide taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
 console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
 
-const ctx = document.getElementById('myChart');
 
-// declare global variable myChart to destroy and create new charts in createChart function
+
+// declare global variable myChart to destroy and create new charts in createChart and setChartType functions
 let myChart;
 
 function setChartType(chartType){
@@ -368,10 +369,12 @@ function setChartType(chartType){
     myChart.destroy();
 
     // create new object with new chart type assigned
-    createChart(data, chartType);
+    createChart(allcityTotals, chartType);
 }
 
 function createChart(data, type){
+    const ctx = document.getElementById('myChart');
+
     myChart = new Chart(ctx, {
         type: type,
         data: {
