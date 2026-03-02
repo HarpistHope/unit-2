@@ -348,25 +348,52 @@ function createLegend(attributes){
 // the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
-document.addEventListener('DOMContentLoaded',function(){
-    const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
-        },
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
+
+// Add a chart showing total enplanements; see console for attribution credit
+// store the chart code in an annoymous function within another event listener that will only run once the DOM content has loaded
+document.addEventListener('DOMContentLoaded',function(){
+    console.log("I have added a chart showing total enplanements for each city over the decade.")
+    console.log("This chart is based on the guide taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
+    console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
+
+    const ctx = document.getElementById('myChart');
+    
+    // declare global variable myChart to destroy and create new charts in createChart function
+    let myChart;
+
+    // recall the allcityTotals array to access in the chart
+    data = allcityTotals;
+
+    function setChartType(chartType){
+        // destroy existing chart
+        myChart.destroy();
+
+        // create new object with new chart type assigned
+        createChart(data, chartType);
+    }
+
+    function createChart(data, type){
+        myChart = new Chart(ctx, {
+            type: type,
+            data: {
+                labels: data.map(row => row.city),
+                datasets: [{
+                label: '# of Votes',
+                data: data.map(row => row.total),
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            },
+
+            maintainAspectRatio: false
+            
             }
-        }
-        }
-    });
+        });
+    }
 });

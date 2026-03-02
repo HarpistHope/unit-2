@@ -42,7 +42,14 @@
         <div id="panel"></div>
 
         <div class="chart">
-         <canvas id="myChart"></canvas>
+            <div class="chart_types">
+                <button onclick="setChartType('bar')">Bar Chart</button>
+                <button onclick="setChartType('line')">Line Chart</button>
+                <button onclick="setChartType('doughnut')">Doughnut Chart</button>
+                <button onclick="setChartType('polarArea')">Polar Area Chart</button>
+                <button onclick="setChartType('radar')">Radar Chart</button>
+            </div>
+            <canvas id="myChart"></canvas>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
