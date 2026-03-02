@@ -42,13 +42,11 @@
         <!-- set up div id="Panel"-->
         <div id="panel"></div>
 
-        <!-- set up chart with multiple chart type options; these are based on the Digital Fox's example guide on YouTube: https://www.youtube.com/watch?v=XPOSEf40SkQ-->
+        <!-- set up chart with multiple chart type options; these are based on the Digital Fox's example tutorial on YouTube: https://www.youtube.com/watch?v=XPOSEf40SkQ-->
         <div class="chart">
             <div class="chart_types">
                 <button onclick="setChartType('bar')">Bar Chart</button>
                 <button onclick="setChartType('line')">Line Chart</button>
-                <button onclick="setChartType('doughnut')">Doughnut Chart</button>
-                <button onclick="setChartType('polarArea')">Polar Area Chart</button>
                 <button onclick="setChartType('radar')">Radar Chart</button>
             </div>
             <canvas id="myChart"></canvas>
@@ -56,6 +54,10 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+        <p></p><h2>Page Content/Data Explanation</h2>
+        <p>Annual passenger enplanement counts from 17 major cities in the United States from 2013 to 2023.</p>
+        <p>More information</p>
 
         <!--put your external script links here-->
         <!-- script link to leaflet-src.js-->
@@ -71,12 +73,6 @@
 
         <!-- script link to main.js -->
         <script type="text/javascript" src="js/main.js"></script>
-
-        <h2>Page Content/Data Explanation</h2>
-        <p>Annual passenger enplanement counts from 17 major cities in the United States from 2013 to 2023.</p>
-        <p>More information</p>
-        
-        
 
     </body>
 </html>
