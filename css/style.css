@@ -1,6 +1,6 @@
 /*Add CSS styles here*/
 #map {    
-    height: 500px;    
+    height: 550px;    
     width: 95%;
     margin: 0 auto; 
     }
@@ -26,14 +26,14 @@
 }
 
 .sequence-control-container {  
-    width: auto;  
-    height: auto;  
+    width: 320px;  
+    height: 20px;  
     background-color: whitesmoke;
     padding: 18px;  
     line-height: 45px;  
     text-align: center;  
     border: solid darkgray 1px;  
-    margin-bottom: 40px;
+    margin-bottom: 40px !important;
 
     /* Making the layout prettier/more spread out/centered: */
     display: flex; 
@@ -83,4 +83,14 @@
 
 .chart .chart_types button{
     padding: 10px 25px;
+}
+
+#initialContent{
+    margin: auto;
+    text-align: center;
+}
+
+#infoParagraphs{
+    width: 95%;
+    margin: 0 auto;
 }

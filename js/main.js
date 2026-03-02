@@ -102,7 +102,7 @@ function pointToLayer(feature, latlng, attributes){
         radius: 8,
         fillColor: "#87cefa",
         color: "white",
-        weight: 1,
+        weight: 1.2,
         opacity: 1,
         fillOpacity: 0.95
     }
