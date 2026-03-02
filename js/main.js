@@ -341,6 +341,7 @@ function createLegend(attributes){
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
                 createLegend(attributes);
+                createChart(allcityTotals, 'type');
             });
 
     };
@@ -352,48 +353,44 @@ document.addEventListener('DOMContentLoaded',createMap)
 
 // Add a chart showing total enplanements; see console for attribution credit
 // store the chart code in an annoymous function within another event listener that will only run once the DOM content has loaded
-document.addEventListener('DOMContentLoaded',function(){
-    console.log("I have added a chart showing total enplanements for each city over the decade.")
-    console.log("This chart is based on the guide taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
-    console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
+//document.addEventListener('DOMContentLoaded',function(){
+console.log("I have added a chart showing total enplanements for each city over the decade.")
+console.log("This chart is based on the guide taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
+console.log("This chart also uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
 
-    const ctx = document.getElementById('myChart');
-    
-    // declare global variable myChart to destroy and create new charts in createChart function
-    let myChart;
+const ctx = document.getElementById('myChart');
 
-    // recall the allcityTotals array to access in the chart
-    data = allcityTotals;
+// declare global variable myChart to destroy and create new charts in createChart function
+let myChart;
 
-    function setChartType(chartType){
-        // destroy existing chart
-        myChart.destroy();
+function setChartType(chartType){
+    // destroy existing chart
+    myChart.destroy();
 
-        // create new object with new chart type assigned
-        createChart(data, chartType);
-    }
+    // create new object with new chart type assigned
+    createChart(data, chartType);
+}
 
-    function createChart(data, type){
-        myChart = new Chart(ctx, {
-            type: type,
-            data: {
-                labels: data.map(row => row.city),
-                datasets: [{
-                label: '# of Votes',
-                data: data.map(row => row.total),
-                borderWidth: 1
-            }]
-            },
-            options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            },
-
-            maintainAspectRatio: false
-            
+function createChart(data, type){
+    myChart = new Chart(ctx, {
+        type: type,
+        data: {
+            labels: data.map(row => row.city),
+            datasets: [{
+            label: 'Total Number of Enplanements (2013-2023)',
+            data: data.map(row => row.total),
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
             }
-        });
-    }
-});
+        },
+
+        maintainAspectRatio: false
+        
+        }
+    });
+};
