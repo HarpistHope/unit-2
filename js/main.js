@@ -13,7 +13,7 @@ var allcityTotals = [];
 function createMap(){
     //create the map
     map = L.map('map', {
-        center: [38.27, -98.58],
+        center: [38.27, -97.58],
         zoom: 4
     });
 

@@ -26,13 +26,14 @@
 }
 
 .sequence-control-container {  
-    width: 350px;  
-    height: 30px;  
+    width: auto;  
+    height: auto;  
     background-color: whitesmoke;
-    padding: 20px;  
+    padding: 18px;  
     line-height: 45px;  
     text-align: center;  
     border: solid darkgray 1px;  
+    margin-bottom: 40px;
 
     /* Making the layout prettier/more spread out/centered: */
     display: flex; 
