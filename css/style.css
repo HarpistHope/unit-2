@@ -6,7 +6,7 @@
     }
 
 .leaflet-popup-content {
-    background: #335ef9; 
+    background: goldenrod; 
     color: #55524f;  
     border-radius: 1px;
     font-size: 14px;
@@ -15,7 +15,7 @@
 }
 
 .leaflet-popup-content-wrapper{
-    background: #335ef9;
+    background: goldenrod;
     border-radius: 5px;
     opacity: 1
 }
@@ -28,7 +28,7 @@
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: #335ef9;  
+    background-color: goldenrod;  
     padding: 10px;  
     line-height: 45px;  
     text-align: center;  
