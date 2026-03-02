@@ -63,12 +63,11 @@
     border: solid darkslategray 1px;  
 }
 
-
 .chart{
     max-width: 600px;
     height: auto;
     padding: 50px;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
 .chart .chart_types{
