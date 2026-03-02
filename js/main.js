@@ -1,5 +1,5 @@
 // GEOG 575 - Spring 2026 - Lab 1 - Hope McBride
-// Favicon by MHDK Avatar at the Noun Project https://thenounproject.com/icon/airplane-8160142/
+// Public domain Favicon available at https://pinhead.ink/; icon title = airport_terminal_with_plane_takeoff
 console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 20 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and dataStats var in global scope so I can access them in all necessary functions
