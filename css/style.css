@@ -7,7 +7,7 @@
 
 .leaflet-popup-content {
     background: #87cefa; 
-    color: seashell;  
+    color: white;  
     border-radius: 1px;
     font-size: 14px;
     line-height: 20px;
@@ -28,11 +28,11 @@
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: lightgray;
-    padding: 10px;  
+    background-color: whitesmoke;
+    padding: 20px;  
     line-height: 45px;  
     text-align: center;  
-    border: solid black 1px;  
+    border: solid darkgray 1px;  
 
     /* Making the layout prettier/more spread out/centered: */
     display: flex; 
@@ -56,11 +56,11 @@
 .legend-control-container {
     width: auto;  
     height: auto;  
-    background-color: lightgray;  
+    background-color: whitesmoke;  
     padding: 10px;  
     line-height: 10px;  
     text-align: center;  
-    border: solid black 1px;  
+    border: solid darkgrey 1px;  
 }
 
 .chart{
