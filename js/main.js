@@ -17,14 +17,14 @@ function createMap(){
         zoom: 4
     });
 
-    var Stadia_StamenTerrainBackground = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.{ext}', {
+// add ESRI tile layer with custom attribution
+    var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         minZoom: 2,
         maxZoom: 5,
-        attribution: 'Federal Aviation Administration (FAA) | Blackwoodmedia.com.au at the Noun Project | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        ext: 'png'
-    });
-    
-    Stadia_StamenTerrainBackground.addTo(map);
+        attribution: 'Federal Aviation Administration (FAA) | Blackwoodmedia.com.au at the Noun Project | Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+});
+
+    Esri_WorldTopoMap.addTo(map);
 
     //call getData function
     getData();
@@ -100,11 +100,11 @@ function pointToLayer(feature, latlng, attributes){
     // create marker options
     var options = {
         radius: 8,
-        fillColor: "rgb(128, 155, 218)",
-        color: "clamshell",
+        fillColor: "#87cefa",
+        color: "white",
         weight: 1,
         opacity: 1,
-        fillOpacity: 1
+        fillOpacity: 0.95
     }
     // logging to the console to check
     // console.log(Object.keys(feature.properties));
@@ -306,7 +306,7 @@ function createLegend(attributes){
                 var cy = 59 - radius;  
 
                 //circle string  
-                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '" cy="' + cy + '" fill="rgb(128, 155, 218)" fill-opacity="0.8" stroke="clamshell" cx="30"/>';  
+                svg += '<circle class="legend-circle" id="' + circles[i] + '" r="' + radius + '" cy="' + cy + '" fill="#87cefa" fill-opacity="0.7" stroke="white" cx="30"/>';  
                 
                 // evenly space out labels
                 var textY = i * 20 + 20;

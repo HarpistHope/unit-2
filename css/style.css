@@ -6,7 +6,7 @@
     }
 
 .leaflet-popup-content {
-    background: rgb(128, 155, 218); 
+    background: #87cefa; 
     color: seashell;  
     border-radius: 1px;
     font-size: 14px;
@@ -15,24 +15,24 @@
 }
 
 .leaflet-popup-content-wrapper{
-    background: rgb(128, 155, 218);
+    background: #87cefa;
     border-radius: 5px;
     opacity: 1
 }
 
 .leaflet-popup-tip{
-    background: rgb(128, 155, 218);
+    background: #87cefa;
     opacity: 1
 }
 
 .sequence-control-container {  
     width: 350px;  
     height: 30px;  
-    background-color: lightcyan;
+    background-color: lightgray;
     padding: 10px;  
     line-height: 45px;  
     text-align: center;  
-    border: solid darkslategray 1px;  
+    border: solid black 1px;  
 
     /* Making the layout prettier/more spread out/centered: */
     display: flex; 
@@ -56,11 +56,11 @@
 .legend-control-container {
     width: auto;  
     height: auto;  
-    background-color: lightcyan;  
+    background-color: lightgray;  
     padding: 10px;  
     line-height: 10px;  
     text-align: center;  
-    border: solid darkslategray 1px;  
+    border: solid black 1px;  
 }
 
 .chart{
