@@ -109,7 +109,7 @@ function pointToLayer(feature, latlng, attributes){
         fillOpacity: 0.95
     }
     // logging to the console to check
-    //console.log(Object.keys(feature.properties));
+    console.log(Object.keys(feature.properties));
     
     // for each feature, determine its value for the selected attribute
     var attValue = Number(feature.properties[attribute]);
