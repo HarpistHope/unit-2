@@ -3,9 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-            <title>Passenger Count Trends</title>
-            <!-- public domain favicon icon retrieved from https://pinhead.ink/ -->
-              <link rel="icon" type="image/png" href="img/airportFaviconPinhead.png">
+        
+        <title>Passenger Count Trends</title>
+        
+        <!-- public domain favicon icon retrieved from https://pinhead.ink/ -->
+        <link rel="icon" type="image/png" href="img/airportFaviconPinhead.png">
 
         <!--put your external stylesheet links here-->
         <!-- link to Leaflet css -->
@@ -52,6 +54,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <!-- set up the main text portion of the webpage with div id 'infoParagraphs'; I referenced FreeCodeCamp's Responsive Web Design tutorial for formatting guidance: https://www.freecodecamp.org/learn/responsive-web-design-v9/#workshop-curriculum-outline-->
         <div id="infoParagraphs">        
             <p></p><h2>About This Map </h2><p></p>
             <section>
@@ -67,7 +70,7 @@
 
                 <h3>Why Are Enplanements Tracked? </h3>
                 <p>
-                    Enplanements are used to evaluate the passenger-associated demand placed on commercial service airports, <a href="https://www.bts.gov/archive/publications/transportation_indicators/august_2001/Mobility/Enplanement" target="_blank">particularly gate and luggage demands</a>. Enplanement counts are a standard metric for estimating airport capacity and funding needs. 
+                    Enplanements are used to evaluate the passenger-associated demand placed on commercial service airports, particularly gate and luggage demands. Enplanement counts are a standard metric for estimating airport capacity and funding needs. 
                 </p>
                 <h3>City Selection</h3>
             <p>
@@ -102,6 +105,7 @@
             
             </section>
         </div>
+        
         <!--put your external script links here-->
         <!-- script link to leaflet-src.js-->
         <script src="lib/leaflet/dist/leaflet-src.js"></script>

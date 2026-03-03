@@ -1,6 +1,6 @@
 // GEOG 575 - Spring 2026 - Lab 1 - Hope McBride
 // Public domain Favicon available at https://pinhead.ink/; icon title = airport_terminal_with_plane_takeoff
-console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 17 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
+console.log("This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 17 of the most consistently busy airport cities in the United States from 2013 to 2023. All original data was made accessible by the U.S. Department of Transportation and the FAA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023");
 
 //declare map and dataStats var in global scope so I can access them in all necessary functions
 var map;
@@ -23,7 +23,7 @@ function createMap(){
         maxZoom: 6,
         attribution: 'Federal Aviation Administration (FAA) | Blackwoodmedia.com.au at the Noun Project | Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
 });
-
+    // add the layer to the map
     Esri_WorldTopoMap.addTo(map);
 
     //call getData function
@@ -34,16 +34,16 @@ function createMap(){
 function calcStats(data){
     //create emtpy array to store all data values
     var allValues = [];
-    // reset the city totals array so it doesn't duplicate if fetch is called again
+    // reset/empty the city totals array (for the chart) so it doesn't duplicate if fetch is called again
     allcityTotals = [];
+    
     // loop through each city
     for (var city of data.features){
         // create cityTotal variable 
         var cityTotal = 0;
-
+        
         //loop through each year
         for(var year = 2013; year <= 2023; year+=1){
-            //console.log(year)
             // get enplanement numbers for current year
             var value = city.properties[year]
             // add value to array
@@ -52,24 +52,24 @@ function calcStats(data){
             cityTotal += value;
         }
 
-        // While I'm still in the loop, push each city + total pairs to allcityTotals array 
+        // While I'm still in the city loop, push each city + total pairs to allcityTotals array 
         allcityTotals.push({
             city: city.properties.City,
             total: cityTotal
         });
     }
+    
+    // check the chart array on the console
+    console.log(allcityTotals);
+
     // get min, max, mean stats for our array
     dataStats.min = Math.min(...allValues);
     dataStats.max = Math.max(...allValues);
     //calculate meanValue
     var sum = allValues.reduce(function(a, b){return a+b;});
-    dataStats.mean = sum/ allValues.length;
+    dataStats.mean = sum / allValues.length;
 
 }
-
-// check the array; it logs the cities and their total enplanements over the decade
-console.log(allcityTotals)
-
 
 // Calculate the radius of each proportional symbol
 function calcPropRadius(attValue) {
@@ -87,15 +87,17 @@ function PopupContent(properties, attribute){
     this.attribute = attribute;
     this.year = attribute;
     this.passengers = this.properties[attribute];
+    // I decided to make the attribute values bold in the popup to better emphasize their importance
     this.formatted = "<p>City: <b>" + this.properties.City + "</b><p>Airports: <b>" + this.properties.Airports + "</b></p><p>Year: <b>" + this.year + "</b></p><p>Total Number of Enplanements: <b>" + this.passengers + "</b></p>";
 };
 
 // function to create circle markers for point features and bind the popups to the markers
 function pointToLayer(feature, latlng, attributes){
-    //Step 4: Assign the current attribute based on the first index of the attributes array
+    // Assign the current attribute based on the first index of the attributes array
     var attribute = attributes[0];
+   
     //check
-    //console.log(attribute);
+    console.log(attribute);
 
     // create marker options
     var options = {
@@ -107,7 +109,7 @@ function pointToLayer(feature, latlng, attributes){
         fillOpacity: 0.95
     }
     // logging to the console to check
-    // console.log(Object.keys(feature.properties));
+    console.log(Object.keys(feature.properties));
     
     // for each feature, determine its value for the selected attribute
     var attValue = Number(feature.properties[attribute]);
@@ -126,7 +128,7 @@ function pointToLayer(feature, latlng, attributes){
     	offset: new L.Point(0,-6)
     });
    
-    //return the circle marker to the L.geoJson pointToLayer option
+    //return the circle marker to the pointToLayer option
     return layer;
 };
 
@@ -139,7 +141,7 @@ function createPropSymbols(data, attributes){
         }
     }).addTo(map);
 
-    // Set up the map's entry point: a popup with instructions to click the proportional symbols
+    // Set up the map's entry point: a popup with instructions to click the proportional symbols (I placed in in Kansas)
     var firstPopup = L.popup()
         .setLatLng([39.0119, -98.4842])
         .setContent("Click on proportional symbols to see data.")
@@ -150,13 +152,16 @@ function createPropSymbols(data, attributes){
 function updatePropSymbols(attribute){
     // get the year from the attribute
     var year = attribute
+   
     // update temporal legend for each year
     document.querySelector("span.year").innerHTML = year;
-
+    
     // update size and popup content of each prop symbol 
     map.eachLayer(function(layer){
+        
         //Example 3.18 line 4
         if (layer.feature && layer.feature.properties[attribute]){
+           
             //access feature properties
             var props = layer.feature.properties;
 
@@ -176,7 +181,7 @@ function updatePropSymbols(attribute){
 };
 
 
-// function to create new sequence controls
+// function to create new sequence controls, place it in the bottom left corner (I adjust this in the style.css file so it isn't covered by the attribution)
 function createSequenceControls(attributes){   
     var SequenceControl = L.Control.extend({
         options: {
@@ -229,6 +234,7 @@ function createSequenceControls(attributes){
 
     // click listener for buttons
     document.querySelectorAll('.step').forEach(function(step){
+        // set up event listener
         step.addEventListener("click", function(){
             var index = document.querySelector('.range-slider').value;
 
@@ -254,7 +260,7 @@ function createSequenceControls(attributes){
     })
 };
 
-//Above Example 3.10...Step 3: build an attributes array from the data
+// build an attributes array from the data
 function processData(data){
 
     //empty array to hold attributes
@@ -266,7 +272,7 @@ function processData(data){
     //push each attribute name into attributes array
     for (var attribute in properties){
 
-        //only take attributes with population values
+        //only take attributes with population values - '20' is used because each year starts with '20...'
         if (attribute.indexOf("20") > -1){
             attributes.push(attribute);
         };                
@@ -330,7 +336,7 @@ function createLegend(attributes){
 };
 
 
-// Import GeoJSON data
+// Finally, import GeoJSON data
     function getData(map){
         //load the data
         fetch("data/topEnplanementCities.geojson")
@@ -340,6 +346,7 @@ function createLegend(attributes){
             .then(function(json){
                  //create an attributes array
                 var attributes = processData(json);
+                // call all the functions defined above (and below, see chart function)
                 calcStats(json);
                 createPropSymbols(json, attributes);
                 createSequenceControls(attributes);
@@ -349,19 +356,18 @@ function createLegend(attributes){
 
     };
 
-// the eventlistener will wait until the DOM content has loaded and then will call the function createMap which puts the whole thing together
+// the eventlistener will wait until the DOM content has loaded and then will call the function createMap (defined at the start) which puts the whole thing together
 document.addEventListener('DOMContentLoaded',createMap)
 
 
 
 // Add a chart showing total enplanements; see console for attribution credit
-console.log("I have added a chart showing total enplanements for each city over the decade.")
-console.log("This chart is based on the tutorial taught by Digital Fox on Youtube: https://www.youtube.com/watch?v=XPOSEf40SkQ");
-console.log("This chart uses the Chart.js Getting Started library: https://www.chartjs.org/docs/latest/getting-started/");
+console.log("I added a chart showing total enplanements for each city over the decade. This chart is based on the tutorial taught by Digital Fox on YouTube: https://www.youtube.com/watch?v=XPOSEf40SkQ. It also uses the Chartjs Getting Started Library:  https://www.chartjs.org/docs/latest/getting-started/.");
 
 // declare global variable myChart to use for destroying and creating new charts in createChart and setChartType functions
 let myChart;
 
+// create function to let the user select the chart type 
 function setChartType(chartType){
     // destroy existing chart
     myChart.destroy();
@@ -370,6 +376,8 @@ function setChartType(chartType){
     createChart(allcityTotals, chartType);
 }
 
+// create function to build the initial chart (I set the default type to bar chart in the getData function)
+// This function is based on the tutorial from Digital Fox and the Chartjs Library
 function createChart(data, type){
     const ctx = document.getElementById('myChart');
 

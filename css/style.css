@@ -33,7 +33,9 @@
     line-height: 45px;  
     text-align: center;  
     border: solid darkgray 1px;  
-    margin-bottom: 40px !important;
+    
+    /* Making sure the sequence control container is not covered by the attribution */ 
+    margin-bottom: 40px !important; 
 
     /* Making the layout prettier/more spread out/centered: */
     display: flex; 
