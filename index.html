@@ -53,15 +53,23 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <div id="infoParagraphs">        
-            <p></p><h2>Page Content/Data Explanation</h2>
-            <p>Annual passenger enplanement counts from 17 major cities in the United States from 2013 to 2023.</p>
-            <p>More information: This map shows the annual number of passengers boarding airplanes (offically called enplanements) in 17 of the most consistently busy airport cities in the United States from 2013 to 2023. 
-            All original data was made accessible by the U.S. Gederal Aviation Administration and the FFA. Data was accessed by H. McBride 02/2026 at: https://www.faa.gov/airports/planning_capacity/passenger_allcargo_stats/passenger/previous_years#2023.
-            </p>
+            <p></p><h2>About This Map </h2><p></p>
+            <section>
+                <h3>Data Summary</h3>
+                <p>
+                    Every year, the U.S. Department of Transportation (DOT) and Federal Aviation Association (FAA) distribute entitlement funds to airports for a variety of improvement projects. The allotment of these funds is determined by formulaic calculations performed on data collected from the airports throughout the year. Annual enplanement counts are one of the major critical factors taken into direct consideration when performing the calculations. 
+                </p>
 
+                <h3>What Are Enplanements?</h3>
+                <p>
+                   Enplanement is an aviation statistics term used to refer to the number of passengers boarding an airplane. The DOT makes a distinction between an enplanement and a trip: during one trip, a single passenger may board many flights. Each new boarding event counts as a separate enplanement. Note that enplanements do not track an airport's total passenger traffic; arriving passengers (i.e., passengers getting off an airplane) are not included in the enplanement count. 
+                </p>
 
-        <section>
-            <h3>City Selection</h3>
+                <h3>Why Are Enplanements Tracked? </h3>
+                <p>
+                    Enplanements are used to evaluate the passenger-associated demand placed on commercial service airports, particularly gate and luggage demands (https://www.bts.gov/archive/publications/transportation_indicators/august_2001/Mobility/Enplanement). Though enplanements counts are less than the total traffic, they nevertheless remain a standard metric for estimating airport capacity and funding needs. 
+                </p>
+                <h3>City Selection</h3>
             <p>
                 To create the inital dataset, twenty U.S. cities showing the highest enplanement counts in 2023 were identified. Enplanement data from 2013 to 2023 was then compiled for those twenty cities. Newark, Philadelphia, and Fort Lauderdale were removed from the final map dataset to limit large overlap of proportional symbols in the Northeast and Florida.
             </p>
@@ -87,10 +95,12 @@
                 <li>San Francisco</li>
                 <li>Seattle</li>
             </ul>
-         </section>
-         <section>
-
-         </section>
+                <h2>The Goal of This Map: </h2>
+                <p>
+                    This map shows the exact number of annual enplanement numbers in seventeen major U.S. cities. All contributing airports are listed within a city's popup. Some cities have multiple airports contributing to the counts; some have only one. The goal of this map is to encourage thought and discussion about the rising number of passengers at major airports. What factors might be contributing to this rise in numbers? Are there any outlining trends or anomalies?  
+                </p>
+            
+            </section>
         </div>
         <!--put your external script links here-->
         <!-- script link to leaflet-src.js-->
